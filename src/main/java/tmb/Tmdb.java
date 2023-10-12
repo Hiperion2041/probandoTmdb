@@ -8,12 +8,13 @@ import org.json.JSONObject;
 public class Tmdb {
 
     public static void main(String[] args) {
-        // Tu clave de API de TMDb
+        // Tu clave de la API y lenguaje
         String apiKey = "c7139779b236be0110d8190a5e11fd53";
         String language = "es";
 
         try {
-            // Realiza una solicitud GET para obtener una lista de películas populares
+            // Realizo la solicitud a la api
+        	//en caso de usar linea 26,34 cambiar a este http https://api.themoviedb.org/3/movie/popular
             HttpResponse<JsonNode> response = Unirest.get("https://api.themoviedb.org/3/movie/"+968051)
                     .queryString("api_key", apiKey)
                     .queryString("language", language)
@@ -21,15 +22,16 @@ public class Tmdb {
 
             // Verifica si la solicitud fue exitosa
             if (response.getStatus() == 200) {
-                // Extrae la matriz de resultados (películas populares)
+                // Lo de abajo era para antes traer el resultado de las peliculas mas populares
                 //JSONArray results = response.getBody().getObject().getJSONArray("results");
             	
+            	//guardo la descripcion de la pelicula en la variable Des
             	String des=response.getBody().getObject().getString("overview");
             	
             	System.out.println(des);
             	
 
-                // Itera a través de las películas e imprime sus títulos
+                // Imprimo los titulos de las peliculas mas populares, esto iria con el codigo de la linea 26 y se deberia modifcar la 18
 //                for (int i = 0; i < results.length(); i++) {
 //                    JSONObject movie = results.getJSONObject(i);
 //                    String title = movie.getString("title");
